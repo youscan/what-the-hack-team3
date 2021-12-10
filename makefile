@@ -2,6 +2,8 @@ subscription = b10f1bdc-6edd-4a40-9930-25bd7c187adc
 resource = team3ResourceGroup
 cluster = team3AKSCluster
 team = youscanTeam3
+template = team3chart
+release = team3chart
 
 set-subscription:
 	az account set --subscription $(subscription)
@@ -54,3 +56,6 @@ add-node-pool:
 
 install-nginx:
 	az acr import -n $(team) --source docker.io/library/nginx:latest --image nginx:v1
+
+helm-update:
+	helm upgrade $(release) $(template)
