@@ -78,3 +78,13 @@ get-podes:
 
 get-services:
 	kubectl get services --all-namespaces
+
+ingress-logs:
+	kubectl get ing -n ingress-basic
+
+ingress-get-pods:
+	kubens ingress-basic
+	kubectl get pods
+
+nginx-logs:
+	kubectl logs nginx-ingress-ingress-nginx-controller-588dcd5598-swf69
