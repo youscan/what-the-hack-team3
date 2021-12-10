@@ -1,6 +1,7 @@
 subscription = b10f1bdc-6edd-4a40-9930-25bd7c187adc
 resource = team3ResourceGroup
 cluster = team3AKSCluster
+team = youscanTeam3
 
 set-subscription:
 	az account set --subscription $(subscription)
@@ -9,7 +10,7 @@ create-resource-group:
 	az group create --name $(resource) --location westeurope
 
 crete-acr:
-	az acr create --resource-group $(resource) --name youscanTeam3 --sku Basic
+	az acr create --resource-group $(resource) --name $(team) --sku Basic
 
 create-aks:
 	az aks create --resource-group $(resource) --name $(cluster) --node-count 1 --enable-addons monitoring --generate-ssh-keys
@@ -29,7 +30,7 @@ enable-autocaling:
 	--max-count 3
 
 attach-acr:
-	az aks update -n $(cluster) -g $(resource) --attach-acr youscanTeam3
+	az aks update -n $(cluster) -g $(resource) --attach-acr $(team)
 
 
 install-deps:
@@ -49,3 +50,7 @@ add-node-pool:
 --name userpool \
 --node-count 1 \
 --mode User
+
+
+install-nginx:
+	az acr import -n $(team) --source docker.io/library/nginx:latest --image nginx:v1
