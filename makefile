@@ -30,3 +30,8 @@ enable-autocaling:
 
 attach-acr:
 	az aks update -n $(cluster) -g $(resource) --attach-acr youscanTeam3
+
+
+install-deps:
+	brew install kubectx
+	brew install k9s
