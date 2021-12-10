@@ -88,3 +88,6 @@ ingress-get-pods:
 
 nginx-logs:
 	kubectl logs nginx-ingress-ingress-nginx-controller-588dcd5598-swf69
+
+disable-readyz:
+	curl -d http://3team.20.56.200.122.nip.io/readyz/disable
