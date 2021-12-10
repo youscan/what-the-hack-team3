@@ -1,6 +1,6 @@
 subscription = b10f1bdc-6edd-4a40-9930-25bd7c187adc
 resource = team3ResourceGroup
-culster = team3AKSCluster
+cluster = team3AKSCluster
 
 set-subscription:
 	az account set --subscription $(subscription)
@@ -35,3 +35,17 @@ attach-acr:
 install-deps:
 	brew install kubectx
 	brew install k9s
+
+get-credentials:
+	az aks get-credentials --resource-group $(resource) --name $(cluster)
+
+get-nodes:
+	kubectl get nodes
+
+add-node-pool:
+	az aks nodepool add \
+--resource-group $(resource) \
+--cluster-name $(cluster) \
+--name userpool \
+--node-count 1 \
+--mode User
