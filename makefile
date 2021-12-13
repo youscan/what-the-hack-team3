@@ -102,3 +102,6 @@ enable-nodepool-autoscaling:
 	--enable-cluster-autoscaler \
 	--min-count 1 \
 	--max-count 10
+
+install-hpa-example:
+	az acr import -n $(team) --source k8s.gcr.io/hpa-example:latest --image hpa-example:v1
