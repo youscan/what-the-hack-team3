@@ -94,3 +94,11 @@ disable-readyz:
 
 kill-pod:
 	kubectl delete pods team3chart-7686bc74b4-dcrfk
+
+enable-nodepool-autoscaling:
+	az aks nodepool update --cluster-name $(cluster) \
+    --name userpool \
+	--resource-group $(resource) \
+	--enable-cluster-autoscaler \
+	--min-count 1 \
+	--max-count 10
