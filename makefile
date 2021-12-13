@@ -108,3 +108,6 @@ install-hpa-example:
 
 execute-busybox:
 	kubectl create deployment busybox --image=busybox --replicas=10 -- /bin/sh -c "while true; do wget -q -O- hpa-example; done"
+
+upgrade-hpa-example:
+	helm upgrade hpa-example hpa-example
