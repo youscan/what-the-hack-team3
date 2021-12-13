@@ -105,3 +105,6 @@ enable-nodepool-autoscaling:
 
 install-hpa-example:
 	az acr import -n $(team) --source k8s.gcr.io/hpa-example:latest --image hpa-example:v1
+
+execute-busybox:
+	kubectl create deployment busybox --image=busybox --replicas=10 -- /bin/sh -c "while true; do wget -q -O- hpa-example; done"
