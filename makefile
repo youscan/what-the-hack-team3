@@ -91,3 +91,6 @@ nginx-logs:
 
 disable-readyz:
 	curl -d "" http://3team.20.56.200.122.nip.io/readyz/disable
+
+kill-pod:
+	kubectl delete pods team3chart-7686bc74b4-dcrfk
